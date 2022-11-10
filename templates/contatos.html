@@ -1,0 +1,84 @@
+<html>
+  <head>
+    <title>IFSP - Campus Pirituba</title>        
+  </head>
+  <body>
+    <section>
+      <div>
+        <h1>IFSP - Campus Pirituba</h1>        
+        <form action="/" method="POST">          
+          <div>            
+            <ul>
+                <li>
+                    <label for="nome">Nome</label>
+                    <input type="text" name="nome" id="nome" required/>
+                </li>             
+                <li>
+                    <label for="email">E-Mail</label>
+                    <input type="email" name="email" id="email" required/>
+                </li>   
+                 <li>
+                    <label for="telefone">Telefone</label>
+                    <input type="telefone" name="telefone" id="telefone" required/>
+                </li>  
+                 <li>
+                    <label for="assunto">Assunto</label>
+                    <select type="assunto" id="assunto" name="assunto" required>
+                    <option value="naoselecionado">-- Selecione --</option>
+                    <option value="reclamacao">Reclamação</option>
+                    <option value="sugestao">Sugestão</option></select>
+                </li>  
+                 <li>
+                    <label for="mensagem">Mensagem</label>
+                    <textarea name="mensagem" id="mensagem"></textarea>
+                </li>
+                <li>
+                <fieldset>
+                        <legend>Opções de Resposta</legend>
+                        <label for="resposta-email">E-Mail
+                            <input id="resposta-email" type="checkbox" name="resposta" value="E-mail">
+                        </label>
+                        <label for="resposta-telefone">Telefone</label>
+                        <input id="resposta-telefone" type="checkbox" name="resposta" value="Telefone">
+                    </fieldset>
+                </li>
+            </ul>            
+            <input type="submit" value="Salvar" name="save" />            
+          </div>
+        </form>
+        <form action="/limparBanco" method='POST'>              
+              <input type='submit' value='Eliminar registros' name='delete' />
+        </form>          
+        <br>  
+        <table border='1'>
+          <tr>
+            <th>Nome</th>
+            <th>E-mail</th>
+            <th>Telefone</th>
+            <th>Assunto</th>
+            <th>Mensagem</th>
+            <th>Opção de Resposta</th>
+            <th>Ação</th>
+          </tr>
+          {% for value in contatos %}                        
+            <tr>
+              <td>{{contatos[value]['nome'] }}</td>
+              <td>{{value}}</td>
+              <td>{{contatos[value]['telefone'] }}</td>
+              <td>{{contatos[value]['assunto'] }}</td>
+              <td>{{contatos[value]['mensagem'] }}</td>
+              <td>{{contatos[value]['resposta'] }}</td>
+              <td>
+                  <form action="/delete" method='POST'>              
+              <input type='submit' value='Eliminar registro' name='delete' />
+        </form>
+                  </form> 
+              </td>
+            </tr>  
+          {% endfor %}                      
+        </table>       
+          
+      </div>
+    </section>
+  </body>
+</html>
